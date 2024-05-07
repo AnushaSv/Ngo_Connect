@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NGO Profiles</title>
+  <style>
+    /* CSS for card formatting */
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 15px;  /* Increased padding for readability */
+      margin-bottom: 10px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      transition: 0.3s;
+      cursor: pointer;  /* Set cursor to pointer on hover */
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    /* Styles for hidden details */
+    .card p {
+      display: none;  /* Initially hide details */
+    }
+
+    .card.active p {  /* Show details for the active card */
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>NGO Profiles</h1>
+
+  {% for service in servicesData %}
+  <div class="card">
+    <h2>{{ service.username }}</h2>  <p><strong>Details:</strong></p>  <p><strong>Username:</strong> {{ service.username }}</p>
+    <p><strong>Name:</strong> {{ service.name }}</p>
+    <p><strong>Registration Number:</strong> {{ service.register }}</p>
+    <p><strong>Address:</strong> {{ service.address }}</p>
+    <p><strong>Email:</strong> {{ service.email }}</p>
+    <p><strong>Contact:</strong> {{ service.contact }}</p>
+    <p><strong>Url:</strong> <a href="{{ service.weurl }}">{{ service.weurl }}</a></p>
+  </div>
+  {% endfor %}
+
+  <script>
+    // Add click event listener to each card
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      card.addEventListener('click', function() {
+        card.classList.toggle('active'); // Toggle active class on click
+      });
+    });
+  </script>
+</body>
+</html>
